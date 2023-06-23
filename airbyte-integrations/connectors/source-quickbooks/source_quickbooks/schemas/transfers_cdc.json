@@ -1,0 +1,74 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "Amount": {
+        "type": "number"
+      },
+      "CurrencyRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "FromAccountRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Id": {
+        "type": "string"
+      },
+      "MetaData": {
+        "properties": {
+          "CreateTime": {
+            "type": "string"
+          },
+          "LastUpdatedTime": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SyncToken": {
+        "type": "string"
+      },
+      "ToAccountRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TxnDate": {
+        "type": "string"
+      },
+      "airbyte_cursor": {
+        "type": "string"
+      },
+      "domain": {
+        "type": "string"
+      },
+      "sparse": {
+        "type": "boolean"
+      },
+      "status": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }

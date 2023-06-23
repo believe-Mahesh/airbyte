@@ -1,34 +1,11 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "properties": {
-    "AllowIPNPayment": {
-      "type": "boolean"
-    },
-    "AllowOnlineACHPayment": {
-      "type": "boolean"
-    },
-    "AllowOnlineCreditCardPayment": {
-      "type": "boolean"
-    },
-    "AllowOnlinePayment": {
-      "type": "boolean"
-    },
     "ApplyTaxAfterDiscount": {
       "type": "boolean"
     },
     "Balance": {
       "type": "number"
-    },
-    "BillAddr": {
-      "properties": {
-        "Id": {
-          "type": "string"
-        },
-        "Line1": {
-          "type": "string"
-        }
-      },
-      "type": "object"
     },
     "BillEmail": {
       "properties": {
@@ -77,12 +54,6 @@
     "DocNumber": {
       "type": "string"
     },
-    "DueDate": {
-      "type": "string"
-    },
-    "EInvoiceStatus": {
-      "type": "string"
-    },
     "EmailStatus": {
       "type": "string"
     },
@@ -117,9 +88,6 @@
                 },
                 "type": "object"
               },
-              "Qty": {
-                "type": "number"
-              },
               "TaxCodeRef": {
                 "properties": {
                   "value": {
@@ -127,29 +95,12 @@
                   }
                 },
                 "type": "object"
-              },
-              "UnitPrice": {
-                "type": "number"
               }
             },
             "type": "object"
           },
           "SubTotalLineDetail": {
             "type": "object"
-          }
-        },
-        "type": "object"
-      },
-      "type": "array"
-    },
-    "LinkedTxn": {
-      "items": {
-        "properties": {
-          "TxnId": {
-            "type": "string"
-          },
-          "TxnType": {
-            "type": "string"
           }
         },
         "type": "object"
@@ -170,27 +121,8 @@
     "PrintStatus": {
       "type": "string"
     },
-    "SalesTermRef": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ShipAddr": {
-      "properties": {
-        "Id": {
-          "type": "string"
-        },
-        "Line1": {
-          "type": "string"
-        }
-      },
-      "type": "object"
+    "RemainingCredit": {
+      "type": "number"
     },
     "SyncToken": {
       "type": "string"
@@ -209,6 +141,9 @@
     },
     "sparse": {
       "type": "boolean"
+    },
+    "status": {
+      "type": "string"
     }
   },
   "type": "object"

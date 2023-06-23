@@ -209,6 +209,9 @@
     },
     "sparse": {
       "type": "boolean"
+    },
+    "status": {
+      "type": "string"
     }
   },
   "type": "object"

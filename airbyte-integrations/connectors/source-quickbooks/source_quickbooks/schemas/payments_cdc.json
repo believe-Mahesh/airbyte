@@ -1,0 +1,158 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "CurrencyRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CustomerRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DepositToAccountRef": {
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Id": {
+        "type": "string"
+      },
+      "Line": {
+        "items": {
+          "properties": {
+            "Amount": {
+              "type": "number"
+            },
+            "LineEx": {
+              "properties": {
+                "any": {
+                  "items": {
+                    "properties": {
+                      "declaredType": {
+                        "type": "string"
+                      },
+                      "globalScope": {
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "nil": {
+                        "type": "boolean"
+                      },
+                      "scope": {
+                        "type": "string"
+                      },
+                      "typeSubstituted": {
+                        "type": "boolean"
+                      },
+                      "value": {
+                        "properties": {
+                          "Name": {
+                            "type": "string"
+                          },
+                          "Value": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "LinkedTxn": {
+              "items": {
+                "properties": {
+                  "TxnId": {
+                    "type": "string"
+                  },
+                  "TxnType": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "MetaData": {
+        "properties": {
+          "CreateTime": {
+            "type": "string"
+          },
+          "LastUpdatedTime": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PaymentMethodRef": {
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PaymentRefNum": {
+        "type": "string"
+      },
+      "PrivateNote": {
+        "type": "string"
+      },
+      "ProcessPayment": {
+        "type": "boolean"
+      },
+      "SyncToken": {
+        "type": "string"
+      },
+      "TotalAmt": {
+        "type": "number"
+      },
+      "TxnDate": {
+        "type": "string"
+      },
+      "UnappliedAmt": {
+        "type": "number"
+      },
+      "airbyte_cursor": {
+        "type": "string"
+      },
+      "domain": {
+        "type": "string"
+      },
+      "sparse": {
+        "type": "boolean"
+      },
+      "status": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }

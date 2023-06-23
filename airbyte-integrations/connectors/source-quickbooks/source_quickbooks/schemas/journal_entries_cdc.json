@@ -1,0 +1,97 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "Adjustment": {
+        "type": "boolean"
+      },
+      "CurrencyRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DocNumber": {
+        "type": "string"
+      },
+      "Id": {
+        "type": "string"
+      },
+      "Line": {
+        "items": {
+          "properties": {
+            "Amount": {
+              "type": "number"
+            },
+            "Description": {
+              "type": "string"
+            },
+            "DetailType": {
+              "type": "string"
+            },
+            "Id": {
+              "type": "string"
+            },
+            "JournalEntryLineDetail": {
+              "properties": {
+                "AccountRef": {
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PostingType": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "MetaData": {
+        "properties": {
+          "CreateTime": {
+            "type": "string"
+          },
+          "LastUpdatedTime": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PrivateNote": {
+        "type": "string"
+      },
+      "SyncToken": {
+        "type": "string"
+      },
+      "TxnDate": {
+        "type": "string"
+      },
+      "airbyte_cursor": {
+        "type": "string"
+      },
+      "domain": {
+        "type": "string"
+      },
+      "sparse": {
+        "type": "boolean"
+      },
+      "status": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }

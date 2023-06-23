@@ -1,0 +1,113 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "CheckPayment": {
+        "properties": {
+          "BankAccountRef": {
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "PrintStatus": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CurrencyRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DocNumber": {
+        "type": "string"
+      },
+      "Id": {
+        "type": "string"
+      },
+      "Line": {
+        "items": {
+          "properties": {
+            "Amount": {
+              "type": "number"
+            },
+            "LinkedTxn": {
+              "items": {
+                "properties": {
+                  "TxnId": {
+                    "type": "string"
+                  },
+                  "TxnType": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "MetaData": {
+        "properties": {
+          "CreateTime": {
+            "type": "string"
+          },
+          "LastUpdatedTime": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PayType": {
+        "type": "string"
+      },
+      "SyncToken": {
+        "type": "string"
+      },
+      "TotalAmt": {
+        "type": "number"
+      },
+      "TxnDate": {
+        "type": "string"
+      },
+      "VendorRef": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "airbyte_cursor": {
+        "type": "string"
+      },
+      "domain": {
+        "type": "string"
+      },
+      "sparse": {
+        "type": "boolean"
+      },
+      "status": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }

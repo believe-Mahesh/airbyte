@@ -1,0 +1,160 @@
+version: "0.34.0"
+
+definitions:
+  schema_loader:
+    type: JsonFileSchemaLoader
+    file_path: "./source_quickbooks/schemas/{{ parameters.name }}.json"
+
+  selector:
+    type: RecordSelector
+    extractor:
+      type: DpathExtractor
+      field_path: 
+        - "CDCResponse"
+        - "*"
+        - "QueryResponse"
+        - "*"
+        - "Invoice"
+
+
+  quSelector: 
+    type: RecordSelector
+    extractor:
+      type: DpathExtractor
+      field_path:
+        - "QueryResponse"
+        - "{{ parameters.table_name }}"
+
+  requester:
+    type: HttpRequester
+    url_base: "{{ 'https://sandbox-quickbooks.api.intuit.com' if config.sandbox else 'https://quickbooks.api.intuit.com' }}"
+    http_method: "GET"
+    request_parameters:
+      entities: "{{ parameters.table_name }}"
+      changedSince: "{{ stream_slice.start_time }}"
+
+    request_headers:
+      "Accept": "application/json"
+      "User-Agent": "airbyte-connector"
+    authenticator:
+      type: OAuthAuthenticator
+      token_refresh_endpoint: "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer"
+      client_id: "{{ config['credentials']['client_id'] }}"
+      client_secret: "{{ config['credentials']['client_secret'] }}"
+      refresh_token: "{{ config['credentials']['refresh_token'] }}"
+      refresh_token_updater: {}
+
+  quRequester:
+    type: HttpRequester
+    url_base: "{{ 'https://sandbox-quickbooks.api.intuit.com' if config.sandbox else 'https://quickbooks.api.intuit.com' }}"
+    http_method: "GET"
+    request_parameters:
+      query: "SELECT * FROM {{ parameters.table_name }} WHERE Metadata.LastUpdatedTime > '{{ stream_slice.start_time }}' AND Metadata.LastUpdatedTime <= '{{ stream_slice.end_time }}' {{ parameters.additional_where }} ORDER BY Metadata.LastUpdatedTime ASC STARTPOSITION {{ (next_page_token.next_page_token or 0) + 1 }} MAXRESULTS {{ (config.max_results or '200') | int }}"
+    request_headers:
+      "Accept": "application/json"
+      "User-Agent": "airbyte-connector"
+    authenticator:
+      type: OAuthAuthenticator
+      token_refresh_endpoint: "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer"
+      client_id: "{{ config['credentials']['client_id'] }}"
+      client_secret: "{{ config['credentials']['client_secret'] }}"
+      refresh_token: "{{ config['credentials']['refresh_token'] }}"
+      refresh_token_updater: {}      
+
+
+  retriever:
+    type: SimpleRetriever
+    record_selector:
+      $ref: "#/definitions/selector"
+    paginator:
+      type: DefaultPaginator
+      pagination_strategy:
+        type: OffsetIncrement
+        page_size: "{{ (config.max_results or '5') | int }}"
+    requester:
+      $ref: "#/definitions/requester"
+
+
+  quRetriever:
+    type: SimpleRetriever
+    record_selector:
+      $ref: "#/definitions/quSelector"
+    paginator:
+      type: DefaultPaginator
+      pagination_strategy:
+        type: OffsetIncrement
+        page_size: "{{ (config.max_results or '5') | int }}"
+    requester:
+      $ref: "#/definitions/quRequester"
+
+
+  base_stream:
+    primary_key: "Id"
+    retriever:
+      $ref: "#/definitions/retriever"
+    incremental_sync:
+      type: CustomIncrementalSync
+      class_name: "source_quickbooks.CustomDatetimeBasedCursor"
+      cursor_field: "airbyte_cursor"
+      start_datetime: "{{ config.start_date }}"
+      end_datetime: "{{ now_utc().isoformat('T', 'seconds') }}"
+      datetime_format: "%Y-%m-%dT%H:%M:%S%z"
+      cursor_granularity: "PT0S"
+      step: "P30D"
+    transformations:
+      - type: AddFields
+        fields:
+          - path: [ "airbyte_cursor" ]
+            value: "{{ record.MetaData.LastUpdatedTime }}"
+    $parameters:
+      path: "/v3/company/{{ config.credentials.realm_id }}/{{ parameters.apiPath }}"
+      table_name: "Invoice"
+
+
+  quBase_stream:
+    primary_key: "Id"
+    retriever:
+      $ref: "#/definitions/quRetriever"
+    incremental_sync:
+      type: CustomIncrementalSync
+      class_name: "source_quickbooks.CustomDatetimeBasedCursor"
+      cursor_field: "airbyte_cursor"
+      start_datetime: "{{ config.start_date }}"
+      end_datetime: "{{ now_utc().isoformat('T', 'seconds') }}"
+      datetime_format: "%Y-%m-%dT%H:%M:%S%z"
+      cursor_granularity: "PT0S"
+      step: "P30D"
+    transformations:
+      - type: AddFields
+        fields:
+          - path: [ "airbyte_cursor" ]
+            value: "{{ record.MetaData.LastUpdatedTime }}"
+    $parameters:
+      path: "/v3/company/{{ config.credentials.realm_id }}/{{ parameters.apiPath }}"
+      table_name: "Invoice"
+
+  
+  invoices_cdc:
+    $ref: "#/definitions/base_stream"
+    name: "invoices_cdc"
+    $parameters:
+      $ref: "#/definitions/base_stream/$parameters"
+      table_name: "Invoice"
+      apiPath: "/cdc"
+
+  invoices:
+    $ref: "#/definitions/quBase_stream"
+    name: "invoices"
+    $parameters:
+      $ref: "#/definitions/quBase_stream/$parameters"
+      table_name: "Invoice"
+      apiPath: "/query"
+
+streams:
+  - "#/definitions/invoices_cdc"
+  - "#/definitions/invoices"
+
+check:
+  type: CheckStream
+  stream_names:
+    - "invoices"

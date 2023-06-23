@@ -4,52 +4,22 @@ definitions:
   schema_loader:
     type: JsonFileSchemaLoader
     file_path: "./source_quickbooks/schemas/{{ parameters.name }}.json"
-
   selector:
     type: RecordSelector
     extractor:
       type: DpathExtractor
       field_path:
         - "QueryResponse"
-        - "{{ parameters.selector_name }}"
-    
-  cdcSelector:
-    type: RecordSelector
-    extractor:
-      type: DpathExtractor
-      field_path:
-        - "CDCResponse"
-        - "*"
-        - "QueryResponse"
-        - "*"
-        - "{{ parameters.selector_name }}"
-        - "*"        
-
+        - "{{ parameters.table_name }}"
   requester:
     type: HttpRequester
     url_base: "{{ 'https://sandbox-quickbooks.api.intuit.com' if config.sandbox else 'https://quickbooks.api.intuit.com' }}"
     http_method: "GET"
     request_parameters:
       query: "SELECT * FROM {{ parameters.table_name }} WHERE Metadata.LastUpdatedTime > '{{ stream_slice.start_time }}' AND Metadata.LastUpdatedTime <= '{{ stream_slice.end_time }}' {{ parameters.additional_where }} ORDER BY Metadata.LastUpdatedTime ASC STARTPOSITION {{ (next_page_token.next_page_token or 0) + 1 }} MAXRESULTS {{ (config.max_results or '200') | int }}"
-    request_headers:
-      "Accept": "application/json"
-      "User-Agent": "airbyte-connector"
-    authenticator:
-      type: OAuthAuthenticator
-      token_refresh_endpoint: "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer"
-      client_id: "{{ config['credentials']['client_id'] }}"
-      client_secret: "{{ config['credentials']['client_secret'] }}"
-      refresh_token: "{{ config['credentials']['refresh_token'] }}"
-      refresh_token_updater: {}
-
-
-  cdcRequester:
-    type: HttpRequester
-    url_base: "{{ 'https://sandbox-quickbooks.api.intuit.com' if config.sandbox else 'https://quickbooks.api.intuit.com' }}"
-    http_method: "GET"
-    request_parameters:
       entities: "{{ parameters.table_name }}"
       changedSince: "{{ stream_slice.start_time }}"
+
     request_headers:
       "Accept": "application/json"
       "User-Agent": "airbyte-connector"
@@ -60,9 +30,6 @@ definitions:
       client_secret: "{{ config['credentials']['client_secret'] }}"
       refresh_token: "{{ config['credentials']['refresh_token'] }}"
       refresh_token_updater: {}
-
-
-
   retriever:
     type: SimpleRetriever
     record_selector:
@@ -74,17 +41,6 @@ definitions:
         page_size: "{{ (config.max_results or '5') | int }}"
     requester:
       $ref: "#/definitions/requester"
-
-  cdcRetriever:
-    type: SimpleRetriever
-    record_selector:
-      $ref: "#/definitions/cdcSelector"    
-    paginator:
-      type: NoPagination
-    requester:
-      $ref: "#/definitions/cdcRequester"      
-
-
   base_stream:
     primary_key: "Id"
     retriever:
@@ -104,28 +60,8 @@ definitions:
           - path: [ "airbyte_cursor" ]
             value: "{{ record.MetaData.LastUpdatedTime }}"
     $parameters:
-      path: "/v3/company/{{ config.credentials.realm_id }}/query"
+      path: "/v3/company/{{ config.credentials.realm_id }}/{{ parameters.apiPath }}"
       table_name: "BillPayment"
-
-  cdcBase_stream:
-    primary_key: "Id"
-    retriever:
-      $ref: "#/definitions/cdcRetriever"
-    incremental_sync:
-      type: CustomIncrementalSync
-      class_name: "source_quickbooks.CustomDatetimeBasedCursor"
-      cursor_field: "airbyte_cursor"
-      start_datetime: "{{ config.start_date }}"
-      end_datetime: "{{ now_utc().isoformat('T', 'seconds') }}"
-      datetime_format: "%Y-%m-%dT%H:%M:%S%z"
-    transformations:
-      - type: AddFields
-        fields:
-          - path: [ "airbyte_cursor" ]
-            value: "{{ record.MetaData.LastUpdatedTime }}"
-    $parameters:
-      path: "/v3/company/{{ config.credentials.realm_id }}/cdc"
-      table_name: "Invoice"      
 
   accounts:
     $ref: "#/definitions/base_stream"
@@ -133,8 +69,8 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Account"
-      selector_name: "Account"
       additional_where: "AND Active IN (true, false)"
+      apiPath: "/query"
 
   bill_payments:
     $ref: "#/definitions/base_stream"
@@ -142,15 +78,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "BillPayment"
-      selector_name: "BillPayment"
-
-  bill_payments_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "bill_payments_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "BillPayment"
-      selector_name: "BillPayment"      
+      apiPath: "/query"
 
   bills:
     $ref: "#/definitions/base_stream"
@@ -158,15 +86,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Bill"
-      selector_name: "Bill"
-
-  bills_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "bills_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "Bill"
-      selector_name: "Bill"      
+      apiPath: "/query"
 
   budgets:
     $ref: "#/definitions/base_stream"
@@ -175,8 +95,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Budget"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Budget"
-      
+      apiPath: "/query"
 
   classes:
     $ref: "#/definitions/base_stream"
@@ -185,8 +104,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Class"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Class"
-      
+      apiPath: "/query"
 
   credit_memos:
     $ref: "#/definitions/base_stream"
@@ -194,17 +112,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "CreditMemo"
-      selector_name: "CreditMemo"
-
-
-  credit_memos_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "credit_memos_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "CreditMemo"
-      selector_name: "CreditMemo" 
-      
+      apiPath: "/query"
 
   customers:
     $ref: "#/definitions/base_stream"
@@ -213,8 +121,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Customer"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Customer"
-      
+      apiPath: "/query"
 
   departments:
     $ref: "#/definitions/base_stream"
@@ -223,8 +130,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Department"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Department"
-      
+      apiPath: "/query"
 
   deposits:
     $ref: "#/definitions/base_stream"
@@ -232,17 +138,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Deposit"
-      selector_name: "Deposit"
-
-
-  deposits_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "deposits_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "Deposit"
-      selector_name: "Deposit"
-      
+      apiPath: "/query"
 
   employees:
     $ref: "#/definitions/base_stream"
@@ -251,8 +147,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Employee"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Employee"
-      
+      apiPath: "/query"
 
   estimates:
     $ref: "#/definitions/base_stream"
@@ -260,8 +155,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Estimate"
-      selector_name: "Estimate"
-      
+      apiPath: "/query"
 
   invoices:
     $ref: "#/definitions/base_stream"
@@ -269,17 +163,15 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Invoice"
-      selector_name: "Invoice"
-      
+      apiPath: "/query"
   
   invoices_cdc:
-    $ref: "#/definitions/cdcBase_stream"
+    $ref: "#/definitions/base_stream"
     name: "invoices_cdc"
     $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
+      $ref: "#/definitions/base_stream/$parameters"
       table_name: "Invoice"
-      selector_name: "Invoice"
-      
+      apiPath: "/cdc"
 
   items:
     $ref: "#/definitions/base_stream"
@@ -288,8 +180,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Item"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Item"
-      
+      apiPath: "/query"
 
   journal_entries:
     $ref: "#/definitions/base_stream"
@@ -297,17 +188,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "JournalEntry"
-      selector_name: "JournalEntry"
-
-
-  journal_entries_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "journal_entries_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "JournalEntry"
-      selector_name: "JournalEntry"
-      
+      apiPath: "/query"
 
   payment_methods:
     $ref: "#/definitions/base_stream"
@@ -316,8 +197,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "PaymentMethod"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "PaymentMethod"
-      
+      apiPath: "/query"
 
   payments:
     $ref: "#/definitions/base_stream"
@@ -325,17 +205,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Payment"
-      selector_name: "Payment"
-
-
-  payments_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "payments_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "Payment"
-      selector_name: "Payment"   
-      
+      apiPath: "/query"
 
   purchase_orders:
     $ref: "#/definitions/base_stream"
@@ -343,8 +213,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "PurchaseOrder"
-      selector_name: "PurchaseOrder"
-      
+      apiPath: "/query"
 
   purchases:
     $ref: "#/definitions/base_stream"
@@ -352,17 +221,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Purchase"
-      selector_name: "Purchase"
-
-
-  purchases_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "purchases_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "Purchase"
-      selector_name: "Purchase"     
-      
+      apiPath: "/query"
 
   refund_receipts:
     $ref: "#/definitions/base_stream"
@@ -370,8 +229,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "RefundReceipt"
-      selector_name: "RefundReceipt"
-      
+      apiPath: "/query"
 
   sales_receipts:
     $ref: "#/definitions/base_stream"
@@ -379,17 +237,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "SalesReceipt"
-      selector_name: "SalesReceipt"
-
-
-  sales_receipts_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "sales_receipts_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "SalesReceipt"
-      selector_name: "SalesReceipt"  
-      
+      apiPath: "/query"
 
   tax_agencies:
     $ref: "#/definitions/base_stream"
@@ -397,8 +245,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "TaxAgency"
-      selector_name: "TaxAgency"
-      
+      apiPath: "/query"
 
   tax_codes:
     $ref: "#/definitions/base_stream"
@@ -407,8 +254,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "TaxCode"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "TaxCode"
-      
+      apiPath: "/query"
 
   tax_rates:
     $ref: "#/definitions/base_stream"
@@ -417,8 +263,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "TaxRate"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "TaxRate"
-      
+      apiPath: "/query"
 
   terms:
     $ref: "#/definitions/base_stream"
@@ -427,8 +272,7 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Term"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Term"
-      
+      apiPath: "/query"
 
   time_activities:
     $ref: "#/definitions/base_stream"
@@ -436,8 +280,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "TimeActivity"
-      selector_name: "TimeActivity"
-      
+      apiPath: "/query"
 
   transfers:
     $ref: "#/definitions/base_stream"
@@ -445,17 +288,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Transfer"
-      selector_name: "Transfer"
-
-
-  transfers_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "transfers_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "Transfer"
-      selector_name: "Transfer"     
-      
+      apiPath: "/query"
 
   vendor_credits:
     $ref: "#/definitions/base_stream"
@@ -463,17 +296,7 @@ definitions:
     $parameters:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "VendorCredit"
-      selector_name: "VendorCredit"
-
-
-  vendor_credits_cdc:
-    $ref: "#/definitions/cdcBase_stream"
-    name: "vendor_credits_cdc"
-    $parameters:
-      $ref: "#/definitions/cdcBase_stream/$parameters"
-      table_name: "VendorCredit"
-      selector_name: "VendorCredit"   
-      
+      apiPath: "/query"
 
   vendors:
     $ref: "#/definitions/base_stream"
@@ -482,60 +305,40 @@ definitions:
       $ref: "#/definitions/base_stream/$parameters"
       table_name: "Vendor"
       additional_where: "AND Active IN (true, false)"
-      selector_name: "Vendor"
-
-  credit_card_payments:
-    $ref: "#/definitions/base_stream"
-    name: "credit_card_payments"
-    $parameters:
-      $ref: "#/definitions/base_stream/$parameters"
-      table_name: "creditcardpayment"
-      selector_name: "CreditCardPaymentTxn"
-      
+      apiPath: "/query"
 
 streams:
   - "#/definitions/accounts"
   - "#/definitions/bill_payments"
-  - "#/definitions/bill_payments_cdc"
   - "#/definitions/bills"
-  - "#/definitions/bills_cdc"
   - "#/definitions/budgets"
   - "#/definitions/classes"
   - "#/definitions/credit_memos"
-  - "#/definitions/credit_memos_cdc"
-  - "#/definitions/credit_card_payments"
   - "#/definitions/customers"
   - "#/definitions/departments"
   - "#/definitions/deposits"
-  - "#/definitions/deposits_cdc"
   - "#/definitions/employees"
   - "#/definitions/estimates"
   - "#/definitions/invoices"
   - "#/definitions/invoices_cdc"
   - "#/definitions/items"
   - "#/definitions/journal_entries"
-  - "#/definitions/journal_entries_cdc"
   - "#/definitions/payment_methods"
   - "#/definitions/payments"
-  - "#/definitions/payments_cdc"
   - "#/definitions/purchase_orders"
   - "#/definitions/purchases"
-  - "#/definitions/purchases_cdc"
   - "#/definitions/refund_receipts"
   - "#/definitions/sales_receipts"
-  - "#/definitions/sales_receipts_cdc"
   - "#/definitions/tax_agencies"
   - "#/definitions/tax_codes"
   - "#/definitions/tax_rates"
   - "#/definitions/terms"
   - "#/definitions/time_activities"
   - "#/definitions/transfers"
-  - "#/definitions/transfers_cdc"
   - "#/definitions/vendor_credits"
-  - "#/definitions/vendor_credits_cdc"
   - "#/definitions/vendors"
 
 check:
   type: CheckStream
   stream_names:
-    - "vendor_credits"
+    - "accounts"
