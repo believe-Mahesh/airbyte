@@ -1,0 +1,111 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "account_name": {
+        "type": "string"
+      },
+      "bcy_total": {
+        "type": "number"
+      },
+      "bcy_total_without_tax": {
+        "type": "number"
+      },
+      "created_time": {
+        "type": "string"
+      },
+      "currency_code": {
+        "type": "string"
+      },
+      "currency_id": {
+        "type": "string"
+      },
+      "custom_fields_list": {
+        "type": "string"
+      },
+      "customer_id": {
+        "type": "string"
+      },
+      "customer_name": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "distance": {
+        "type": "number"
+      },
+      "end_reading": {
+        "type": "string"
+      },
+      "exchange_rate": {
+        "type": "number"
+      },
+      "expense_id": {
+        "type": "string"
+      },
+      "expense_receipt_name": {
+        "type": "string"
+      },
+      "expense_type": {
+        "type": "string"
+      },
+      "has_attachment": {
+        "type": "boolean"
+      },
+      "is_billable": {
+        "type": "boolean"
+      },
+      "is_personal": {
+        "type": "boolean"
+      },
+      "last_modified_time": {
+        "type": "string"
+      },
+      "mileage_rate": {
+        "type": "number"
+      },
+      "mileage_type": {
+        "type": "string"
+      },
+      "mileage_unit": {
+        "type": "string"
+      },
+      "paid_through_account_name": {
+        "type": "string"
+      },
+      "reference_number": {
+        "type": "string"
+      },
+      "report_id": {
+        "type": "string"
+      },
+      "report_name": {
+        "type": "string"
+      },
+      "report_number": {
+        "type": "string"
+      },
+      "start_reading": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "total": {
+        "type": "number"
+      },
+      "total_without_tax": {
+        "type": "number"
+      },
+      "vendor_id": {
+        "type": "string"
+      },
+      "vendor_name": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }

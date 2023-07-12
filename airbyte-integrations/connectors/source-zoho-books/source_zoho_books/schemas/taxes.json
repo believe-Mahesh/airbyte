@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "tax_id": {
+        "type": ["null", "string"]
+      },
+      "tax_name": {
+        "type": ["null", "string"]
+      },
+      "tax_percentage": {
+        "type": ["null", "string"]
+      },
+      "tax_type": {
+        "type": ["null", "string"]
+      },
+      "tax_factor": {
+        "type": ["null", "string"]
+      },
+      "tax_specific_type": {
+        "type": ["null", "string"]
+      },
+      "tax_authority_id": {
+        "type": ["null", "string"]
+      },
+      "tax_authority_name": {
+        "type": ["null", "string"]
+      },
+      "is_value_added": {
+        "type": ["null", "boolean"]
+      },
+      "is_default_tax": {
+        "type": ["null", "boolean"]
+      },
+      "is_editable": {
+        "type": ["null", "boolean"]
+      },
+      "output_tax_account_name": {
+        "type": ["null", "string"]
+      },
+      "purchase_tax_account_name": {
+        "type": ["null", "string"]
+      },
+      "tax_account_id": {
+        "type": ["null", "string"]
+      },
+      "purchase_tax_account_id": {
+        "type": ["null", "string"]
+      }
+  
+    }
+  }
+  

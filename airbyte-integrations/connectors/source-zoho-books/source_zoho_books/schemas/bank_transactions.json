@@ -1,0 +1,108 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "account_id": {
+        "type": "string"
+      },
+      "account_name": {
+        "type": "string"
+      },
+      "account_type": {
+        "type": "string"
+      },
+      "amount": {
+        "type": "number"
+      },
+      "currency_code": {
+        "type": "string"
+      },
+      "currency_id": {
+        "type": "string"
+      },
+      "currency_symbol": {
+        "type": "string"
+      },
+      "customer_id": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "debit_or_credit": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "exclude_description": {
+        "type": "string"
+      },
+      "imported_transaction_id": {
+        "type": "string"
+      },
+      "is_auto_categorized": {
+        "type": "boolean"
+      },
+      "is_excluded_by_system": {
+        "type": "boolean"
+      },
+      "is_offsetaccount_matched": {
+        "type": "boolean"
+      },
+      "is_paid_via_print_check": {
+        "type": "boolean"
+      },
+      "is_rule_exist": {
+        "type": "boolean"
+      },
+      "offset_account_code": {
+        "type": "string"
+      },
+      "offset_account_name": {
+        "type": "string"
+      },
+      "payee": {
+        "type": "string"
+      },
+      "payroll_tax_group_formatted": {
+        "type": "string"
+      },
+      "price_precision": {
+        "type": "number"
+      },
+      "reconcile_status": {
+        "type": "string"
+      },
+      "reference_number": {
+        "type": "string"
+      },
+      "rule_details": {
+        "type": "object"
+      },
+      "rule_id": {
+        "type": "string"
+      },
+      "rule_name": {
+        "type": "string"
+      },
+      "running_balance": {
+        "type": "string"
+      },
+      "running_balance_formatted": {
+        "type": "string"
+      },
+      "source": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "transaction_id": {
+        "type": "string"
+      },
+      "transaction_type": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }

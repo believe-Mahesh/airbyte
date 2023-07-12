@@ -1,0 +1,70 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "estimate_id": {
+        "type": ["null", "string"]
+      },
+      "customer_name": {
+        "type": ["null", "string"]
+      },
+      "customer_id": {
+        "type": ["null", "number"]
+      },
+      "status": {
+        "type": ["null", "string"]
+      },
+      "estimate_number": {
+        "type": ["null", "string"]
+      },
+      "reference_number": {
+        "type": ["null", "string"]
+      },
+      "date": {
+        "type": ["null", "string"],
+        "format": "date"
+      },
+      "currency_id": {
+        "type": ["null", "number"]
+      },
+      "currency_code": {
+        "type": ["null", "string"]
+      },
+      "total": {
+        "type": ["null", "number"]
+      },
+      "created_time": {
+        "type": ["null", "string"],
+        "format": "date-time",
+        "airbyte_type": "timestamp_with_timezone"
+      },
+      "last_modified_time": {
+        "type": ["null", "string"],
+        "format": "date-time",
+        "airbyte_type": "timestamp_with_timezone"
+      },
+      "accepted_date": {
+        "type": ["null", "string"],
+        "format": "date"
+      },
+      "declined_date": {
+        "type": ["null", "string"],
+        "format": "date"
+      },
+      "expiry_date": {
+        "type": ["null", "string"],
+        "format": "date"
+      },
+      "has_attachment": {
+        "type": ["null", "boolean"]
+      },
+      "is_viewed_by_client": {
+        "type": ["null", "boolean"]
+      },
+      "client_viewed_time": {
+        "type": ["null", "string"],
+        "format": "date"
+      }     
+    }
+  }
+

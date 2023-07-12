@@ -1,0 +1,152 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "account_id": {
+        "type": "string"
+      },
+      "account_name": {
+        "type": "string"
+      },
+      "amount": {
+        "type": "number"
+      },
+      "applied_invoices": {
+        "type": "array"
+      },
+      "bcy_amount": {
+        "type": "number"
+      },
+      "bcy_refunded_amount": {
+        "type": "number"
+      },
+      "bcy_unused_amount": {
+        "type": "number"
+      },
+      "created_time": {
+        "type": "string"
+      },
+      "custom_fields_list": {
+        "type": "string"
+      },
+      "customer_id": {
+        "type": "string"
+      },
+      "customer_name": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "documents": {
+        "type": "string"
+      },
+      "gateway_transaction_id": {
+        "type": "string"
+      },
+      "has_attachment": {
+        "type": "boolean"
+      },
+      "invoice_numbers": {
+        "type": "string"
+      },
+      "last_four_digits": {
+        "type": "string"
+      },
+      "last_modified_time": {
+        "type": "string"
+      },
+      "payment_gateway": {
+        "type": "string"
+      },
+      "payment_id": {
+        "type": "string"
+      },
+      "payment_mode": {
+        "type": "string"
+      },
+      "payment_mode_formatted": {
+        "type": "string"
+      },
+      "payment_number": {
+        "type": "string"
+      },
+      "payment_type": {
+        "type": "string"
+      },
+      "product_description": {
+        "type": "string"
+      },
+      "reference_number": {
+        "type": "string"
+      },
+      "settlement_status": {
+        "type": "string"
+      },
+      "tax_account_id": {
+        "type": "string"
+      },
+      "tax_account_name": {
+        "type": "string"
+      },
+      "tax_amount_withheld": {
+        "type": "string"
+      },
+      "unused_amount": {
+        "type": "string"
+      },
+      "line_items": {
+        "properties": {
+          "payment_id": {
+            "type": "string"
+          },
+          "payment_mode": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "amount_refunded": {
+            "type": "string"
+          },
+          "bank_charges": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "reference_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "customer_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "invoices": {
+            "type": "array"
+          },
+          "currency_code": {
+            "type": "string"
+          },
+          "currency_symbol": {
+            "type": "string"
+          },
+          "custom_fields": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  }

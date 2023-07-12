@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "salesorder_id": {
+        "type": ["null", "string"]
+      },
+      "zcrm_potential_id": {
+        "type": ["null", "string"]
+      },
+      "zcrm_potential_name": {
+        "type": ["null", "string"]
+      },
+      "customer_name": {
+        "type": ["null", "string"]
+      },
+      "customer_id": {
+        "type": ["null", "string"]
+      },
+      "status": {
+        "type": ["null", "string"]
+      },
+      "salesorder_number": {
+        "type": ["null", "string"]
+      },
+      "reference_number": {
+        "type": ["null", "string"]
+      },
+      "date": {
+        "type": ["null", "string"],
+        "format": "date"
+      },
+      "shipment_date": {
+        "type": ["null", "string"],
+        "format": "date"
+      },
+      "shipment_days": {
+        "type": ["null", "number"]
+      },
+      "currency_id": {
+        "type": ["null", "string"]
+      },
+      "currency_code": {
+        "type": ["null", "string"]
+      },
+      "total": {
+        "type": ["null", "number"]
+      },
+      "sub_total": {
+        "type": ["null", "number"]
+      },
+      "bcy_total": {
+        "type": ["null", "number"]
+      },
+      "created_time": {
+        "type": ["null", "string"],
+        "format": "date-time",
+        "airbyte_type": "timestamp_with_timezone"
+      },
+      "last_modified_time": {
+        "type": ["null", "string"],
+        "format": "date-time",
+        "airbyte_type": "timestamp_with_timezone"
+      },
+      "is_emailed": {
+        "type": ["null", "boolean"]
+      },
+      "has_attachment": {
+        "type": ["null", "boolean"]
+      },
+      "custom_fields": {
+        "type": ["null", "array"]
+      }
+
+    }
+  }
+

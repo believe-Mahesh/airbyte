@@ -1,0 +1,447 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "properties": {
+    "ach_payment_initiated": {
+      "type": "boolean"
+    },
+    "adjustment": {
+      "type": "number"
+    },
+    "balance": {
+      "type": "number"
+    },
+    "billing_address": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "attention": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "street2": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "client_viewed_time": {
+      "type": "string"
+    },
+    "color_code": {
+      "type": "string"
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "created_time": {
+      "type": "string"
+    },
+    "currency_code": {
+      "type": "string"
+    },
+    "currency_id": {
+      "type": "string"
+    },
+    "currency_symbol": {
+      "type": "string"
+    },
+    "current_sub_status": {
+      "type": "string"
+    },
+    "current_sub_status_id": {
+      "type": "string"
+    },
+    "custom_field_hash": {
+      "type": "object"
+    },
+    "custom_fields": {
+      "type": "array"
+    },
+    "customer_id": {
+      "type": "string"
+    },
+    "customer_name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "string"
+    },
+    "due_date": {
+      "type": "string"
+    },
+    "due_days": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "exchange_rate": {
+      "type": "number"
+    },
+    "has_attachment": {
+      "type": "boolean"
+    },
+    "invoice_id": {
+      "type": "string"
+    },
+    "invoice_number": {
+      "type": "string"
+    },
+    "invoice_url": {
+      "type": "string"
+    },
+    "is_emailed": {
+      "type": "boolean"
+    },
+    "is_pre_gst": {
+      "type": "boolean"
+    },
+    "is_viewed_by_client": {
+      "type": "boolean"
+    },
+    "last_modified_time": {
+      "type": "string"
+    },
+    "last_payment_date": {
+      "type": "string"
+    },
+    "last_reminder_sent_date": {
+      "type": "string"
+    },
+    "no_of_copies": {
+      "type": "number"
+    },
+    "payment_expected_date": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "project_name": {
+      "type": "string"
+    },
+    "reference_number": {
+      "type": "string"
+    },
+    "reminders_sent": {
+      "type": "number"
+    },
+    "salesperson_id": {
+      "type": "string"
+    },
+    "salesperson_name": {
+      "type": "string"
+    },
+    "schedule_time": {
+      "type": "string"
+    },
+    "shipping_address": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "attention": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "street2": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shipping_charge": {
+      "type": "number"
+    },
+    "show_no_of_copies": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "template_id": {
+      "type": "string"
+    },
+    "template_type": {
+      "type": "string"
+    },
+    "total": {
+      "type": "number"
+    },
+    "transaction_type": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "updated_time": {
+      "type": "string"
+    },
+    "write_off_amount": {
+      "type": "number"
+    },
+    "zcrm_potential_id": {
+      "type": "string"
+    },
+    "zcrm_potential_name": {
+      "type": "string"
+    },
+    "line_items": {
+      "properties": {
+        "invoice_id": {
+          "type": "string"
+        },
+        "ach_payment_initiated": {
+          "type": "boolean"
+        },
+        "invoice_number": {
+          "type": "string"
+        },
+        "is_pre_gst": {
+          "type": "boolean"
+        },
+        "place_of_supply": {
+          "type": "string"
+        },
+        "gst_no": {
+          "type": "string"
+        },
+        "gst_treatment": {
+          "type": "string"
+        },
+        "cfdi_usage": {
+          "type": "string"
+        },
+        "cfdi_reference_type": {
+          "type": "string"
+        },
+        "reference_invoice_id": {
+          "type": "string"
+        },
+        "vat_treatment": {
+          "type": "string"
+        },
+        "tax_treatment": {
+          "type": "string"
+        },
+        "vat_reg_no": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "payment_terms": {
+          "type": "string"
+        },
+        "payment_terms_label": {
+          "type": "string"
+        },
+        "due_date": {
+          "type": "string"
+        },
+        "payment_expected_date": {
+          "type": "string"
+        },
+        "last_payment_date": {
+          "type": "string"
+        },
+        "reference_number": {
+          "type": "string"
+        },
+        "customer_id": {
+          "type": "string"
+        },
+        "customer_name": {
+          "type": "string"
+        },
+        "contact_persons": {
+          "type": "array"
+        },
+        "currency_id": {
+          "type": "string"
+        },
+        "currency_code": {
+          "type": "string"
+        },
+        "exchange_rate": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "is_discount_before_tax": {
+          "type": "boolean"
+        },
+        "discount_type": {
+          "type": "string"
+        },
+        "is_inclusive_tax": {
+          "type": "boolean"
+        },
+        "recurring_invoice_id": {
+          "type": "string"
+        },
+        "is_viewed_by_client": {
+          "type": "boolean"
+        },
+        "has_attachment": {
+          "type": "boolean"
+        },
+        "client_viewed_time": {
+          "type": "string"
+        },
+        "line_items": {
+          "type": "array"
+        },
+        "shipping_charge": {
+          "type": "string"
+        },
+        "adjustment": {
+          "type": "string"
+        },
+        "adjustment_description": {
+          "type": "string"
+        },
+        "sub_total": {
+          "type": "string"
+        },
+        "tax_total": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string"
+        },
+        "taxes": {
+          "type": "array"
+        },
+        "payment_reminder_enabled": {
+          "type": "boolean"
+        },
+        "payment_made": {
+          "type": "string"
+        },
+        "credits_applied": {
+          "type": "string"
+        },
+        "tax_amount_withheld": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "string"
+        },
+        "write_off_amount": {
+          "type": "string"
+        },
+        "allow_partial_payments": {
+          "type": "boolean"
+        },
+        "price_precision": {
+          "type": "string"
+        },
+        "payment_options": {
+          "type": "array"
+        },
+        "is_emailed": {
+          "type": "boolean"
+        },
+        "reminders_sent": {
+          "type": "string"
+        },
+        "last_reminder_sent_date": {
+          "type": "string"
+        },
+        "billing_address": {
+          "type": "array"
+        },
+        "shipping_address": {
+          "type": "array"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "string"
+        },
+        "custom_fields": {
+          "type": "array"
+        },
+        "template_id": {
+          "type": "string"
+        },
+        "template_name": {
+          "type": "string"
+        },
+        "created_time": {
+          "type": "string"
+        },
+        "last_modified_time": {
+          "type": "string"
+        },
+        "attachment_name": {
+          "type": "string"
+        },
+        "can_send_in_mail": {
+          "type": "boolean"
+        },
+        "salesperson_id": {
+          "type": "string"
+        },
+        "salesperson_name": {
+          "type": "string"
+        },
+        "invoice_url": {
+          "type": "string"
+        }
+      },
+          "type": "object"
+    }
+  },
+  "type": "object"
+}

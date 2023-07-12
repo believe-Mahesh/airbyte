@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "ach_gw_transaction_id": {
+        "type": "string"
+      },
+      "ach_payment_status": {
+        "type": "string"
+      },
+      "amount": {
+        "type": "number"
+      },
+      "balance": {
+        "type": "number"
+      },
+      "bcy_amount": {
+        "type": "number"
+      },
+      "bcy_balance": {
+        "type": "number"
+      },
+      "bill_numbers": {
+        "type": "string"
+      },
+      "check_details": {
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "check_number": {
+            "type": "string"
+          },
+          "check_status": {
+            "type": "string"
+          },
+          "memo": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "created_time": {
+        "type": "string"
+      },
+      "currency_code": {
+        "type": "string"
+      },
+      "currency_id": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "exchange_rate": {
+        "type": "number"
+      },
+      "has_attachment": {
+        "type": "boolean"
+      },
+      "is_ach_payment": {
+        "type": "boolean"
+      },
+      "is_advance_payment": {
+        "type": "boolean"
+      },
+      "is_paid_via_print_check": {
+        "type": "boolean"
+      },
+      "last_modified_time": {
+        "type": "string"
+      },
+      "paid_through_account_id": {
+        "type": "string"
+      },
+      "paid_through_account_name": {
+        "type": "string"
+      },
+      "payment_id": {
+        "type": "string"
+      },
+      "payment_mode": {
+        "type": "string"
+      },
+      "payment_number": {
+        "type": "string"
+      },
+      "product_description": {
+        "type": "string"
+      },
+      "reference_number": {
+        "type": "string"
+      },
+      "vendor_id": {
+        "type": "string"
+      },
+      "vendor_name": {
+        "type": "string"
+      },
+      "line_items": {
+        "properties": {
+          "payment_id": {
+            "type": "string"
+          },
+          "vendor_id": {
+            "type": "string"
+          },
+          "vendor_name": {
+            "type": "string"
+          },
+          "payment_mode": {
+            "type": "string"
+          },
+          "payment_number": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "reference_number": {
+            "type": "string"
+          },
+          "exchange_rate": {
+            "type": "string"
+          },
+          "tax_account_name": {
+            "type": "string"
+          },
+          "tax_amount_withheld": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "string"
+          },
+          "currency_id": {
+            "type": "string"
+          },
+          "currency_symbol": {
+            "type": "string"
+          },
+          "created_time": {
+            "type": "string"
+          },
+          "last_modified_time": {
+            "type": "string"
+          },
+          "paid_through_account_id": {
+            "type": "string"
+          },
+          "paid_through_account_name": {
+            "type": "string"
+          },
+          "paid_through_account_type": {
+            "type": "string"
+          },
+          "is_paid_via_print_check": {
+            "type": "boolean"
+          },
+          "is_ach_payment": {
+            "type": "boolean"
+          },
+          "ach_payment_status": {
+            "type": "string"
+          },
+          "check_details": {
+            "type": "array"
+          },
+          "billing_address": {
+            "type": "array"
+          },
+          "comments": {
+            "type": "string"
+          },
+          "vendorpayment_refunds": {
+            "type": "array"
+          },
+          "bills": {
+            "type": "array"
+          },
+          "documents": {
+            "type": "array"
+          },
+          "custom_fields": {
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  }

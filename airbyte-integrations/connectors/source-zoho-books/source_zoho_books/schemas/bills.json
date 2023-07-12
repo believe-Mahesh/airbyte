@@ -1,0 +1,308 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "attachment_name": {
+        "type": "string"
+      },
+      "balance": {
+        "type": "number"
+      },
+      "bill_id": {
+        "type": "string"
+      },
+      "bill_number": {
+        "type": "string"
+      },
+      "client_viewed_time": {
+        "type": "string"
+      },
+      "color_code": {
+        "type": "string"
+      },
+      "created_time": {
+        "type": "string"
+      },
+      "currency_code": {
+        "type": "string"
+      },
+      "currency_id": {
+        "type": "string"
+      },
+      "current_sub_status": {
+        "type": "string"
+      },
+      "current_sub_status_id": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "due_date": {
+        "type": "string"
+      },
+      "due_days": {
+        "type": "string"
+      },
+      "entity_type": {
+        "type": "string"
+      },
+      "exchange_rate": {
+        "type": "number"
+      },
+      "has_attachment": {
+        "type": "boolean"
+      },
+      "is_tally_bill": {
+        "type": "boolean"
+      },
+      "is_tds_applied": {
+        "type": "string"
+      },
+      "is_uber_bill": {
+        "type": "boolean"
+      },
+      "is_viewed_by_client": {
+        "type": "boolean"
+      },
+      "last_modified_time": {
+        "type": "string"
+      },
+      "price_precision": {
+        "type": "number"
+      },
+      "reference_number": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "tds_total": {
+        "type": "number"
+      },
+      "total": {
+        "type": "number"
+      },
+      "vendor_id": {
+        "type": "string"
+      },
+      "vendor_name": {
+        "type": "string"
+      },
+      "line_items": {
+        "properties": {
+            "bill_id": {
+                "type": "string"
+            },
+            "purchaseorder_ids": {
+                "type": "array"
+            },
+            "vendor_id": {
+                "type": "string"
+            },
+            "vendor_name": {
+                "type": "string"
+            },
+            "vat_treatment": {
+                "type": "string"
+            },
+            "vat_reg_no": {
+                "type": "string"
+            },
+            "source_of_supply": {
+                "type": "string"
+            },
+            "destination_of_supply": {
+                "type": "string"
+            },
+            "place_of_supply": {
+                "type": "string"
+            },
+            "permit_number": {
+                "type": "string"
+            },
+            "gst_no": {
+                "type": "string"
+            },
+            "gst_treatment": {
+                "type": "string"
+            },
+            "tax_treatment": {
+                "type": "string"
+            },
+            "is_pre_gst": {
+                "type": "boolean"
+            },
+            "pricebook_id": {
+                "type": "string"
+            },
+            "pricebook_name": {
+                "type": "string"
+            },
+            "is_reverse_charge_applied": {
+                "type": "boolean"
+            },
+            "unused_credits_payable_amount": {
+                "type": "string"
+            },
+            "status": {
+                "type": "string"
+            },
+            "bill_number": {
+                "type": "string"
+            },
+            "date": {
+                "type": "string"
+            },
+            "due_date": {
+                "type": "string"
+            },
+            "payment_terms": {
+                "type": "string"
+            },
+            "payment_terms_label": {
+                "type": "string"
+            },
+            "payment_expected_date": {
+                "type": "string"
+            },
+            "reference_number": {
+                "type": "string"
+            },
+            "recurring_bill_id": {
+                "type": "string"
+            },
+            "due_by_days": {
+                "type": "string"
+            },
+            "due_in_days": {
+                "type": "string"
+            },
+            "currency_id": {
+                "type": "string"
+            },
+            "currency_code": {
+                "type": "string"
+            },
+            "currency_symbol": {
+                "type": "string"
+            },
+            "documents": {
+                "type": "array"
+            },
+            "price_precision": {
+                "type": "string"
+            },
+            "exchange_rate": {
+                "type": "string"
+            },
+            "adjustment": {
+                "type": "string"
+            },
+            "adjustment_description": {
+                "type": "string"
+            },
+            "custom_fields": {
+                "type": "array"
+            },
+            "is_tds_applied": {
+                "type": "boolean"
+            },
+            "is_item_level_tax_calc": {
+                "type": "boolean"
+            },
+            "is_inclusive_tax": {
+                "type": "boolean"
+            },
+            "filed_in_vat_return_id": {
+                "type": "string"
+            },
+            "filed_in_vat_return_name": {
+                "type": "string"
+            },
+            "filed_in_vat_return_type": {
+                "type": "string"
+            },
+            "is_abn_quoted": {
+                "type": "string"
+            },
+            "line_items": {
+                "type": "array"
+            },
+            "sub_total": {
+                "type": "string"
+            },
+            "tax_total": {
+                "type": "string"
+            },
+            "total": {
+                "type": "string"
+            },
+            "payment_made": {
+                "type": "string"
+            },
+            "vendor_credits_applied": {
+                "type": "string"
+            },
+            "is_line_item_invoiced": {
+                "type": "boolean"
+            },
+            "purchaseorders": {
+                "type": "array"
+            },
+            "taxes": {
+                "type": "array"
+            },
+            "acquisition_vat_summary": {
+                "type": "array"
+            },
+            "acquisition_vat_total": {
+                "type": "string"
+            },
+            "reverse_charge_vat_summary": {
+                "type": "array"
+            },
+            "reverse_charge_vat_total": {
+                "type": "string"
+            },
+            "balance": {
+                "type": "string"
+            },
+            "billing_address": {
+                "type": "array"
+            },
+            "payments": {
+                "type": "array"
+            },
+            "vendor_credits": {
+                "type": "array"
+            },
+            "created_time": {
+                "type": "string"
+            },
+            "created_by_id": {
+                "type": "string"
+            },
+            "last_modified_time": {
+                "type": "string"
+            },
+            "reference_id": {
+                "type": "string"
+            },
+            "notes": {
+                "type": "string"
+            },
+            "terms": {
+                "type": "string"
+            },
+            "attachment_name": {
+                "type": "string"
+            },
+            "open_purchaseorders_count": {
+                "type": "string"
+            }
+        },
+        "type": "object"
+    }
+    },
+    "type": "object"
+}

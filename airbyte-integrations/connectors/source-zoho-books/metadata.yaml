@@ -1,0 +1,22 @@
+data:
+  allowedHosts:
+    hosts:
+      - TODO # Please change to the hostname of the source.
+  registries:
+    oss:
+      enabled: false
+  connectorSubtype: api
+  connectorType: source
+  definitionId: bff50bb0-6220-4fdd-a038-56d50b470bb9
+  dockerImageTag: 0.1.0
+  dockerRepository: airbyte/source-zoho-books
+  githubIssueLabel: source-zoho-books
+  icon: zoho-books.svg
+  license: MIT
+  name: Zoho Books
+  releaseDate: TODO
+  releaseStage: alpha
+  documentationUrl: https://docs.airbyte.com/integrations/sources/zoho-books
+  tags:
+    - language:python
+metadataSpecVersion: "1.0"

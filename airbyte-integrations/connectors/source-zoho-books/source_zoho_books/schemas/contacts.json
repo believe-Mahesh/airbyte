@@ -1,0 +1,132 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+      "ach_supported": {
+        "type": "boolean"
+      },
+      "company_name": {
+        "type": "string"
+      },
+      "contact_id": {
+        "type": "string"
+      },
+      "contact_name": {
+        "type": "string"
+      },
+      "contact_type": {
+        "type": "string"
+      },
+      "contact_type_formatted": {
+        "type": "string"
+      },
+      "created_time": {
+        "type": "string"
+      },
+      "created_time_formatted": {
+        "type": "string"
+      },
+      "currency_code": {
+        "type": "string"
+      },
+      "currency_id": {
+        "type": "string"
+      },
+      "custom_field_hash": {
+        "type": "object"
+      },
+      "custom_fields": {
+        "type": "array"
+      },
+      "customer_name": {
+        "type": "string"
+      },
+      "customer_sub_type": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "facebook": {
+        "type": "string"
+      },
+      "first_name": {
+        "type": "string"
+      },
+      "has_attachment": {
+        "type": "boolean"
+      },
+      "is_linked_with_zohocrm": {
+        "type": "boolean"
+      },
+      "language_code": {
+        "type": "string"
+      },
+      "language_code_formatted": {
+        "type": "string"
+      },
+      "last_modified_time": {
+        "type": "string"
+      },
+      "last_modified_time_formatted": {
+        "type": "string"
+      },
+      "last_name": {
+        "type": "string"
+      },
+      "mobile": {
+        "type": "string"
+      },
+      "outstanding_payable_amount": {
+        "type": "number"
+      },
+      "outstanding_payable_amount_bcy": {
+        "type": "number"
+      },
+      "outstanding_receivable_amount": {
+        "type": "number"
+      },
+      "outstanding_receivable_amount_bcy": {
+        "type": "number"
+      },
+      "payment_terms": {
+        "type": "number"
+      },
+      "payment_terms_label": {
+        "type": "string"
+      },
+      "phone": {
+        "type": "string"
+      },
+      "portal_status": {
+        "type": "string"
+      },
+      "source": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "twitter": {
+        "type": "string"
+      },
+      "unused_credits_payable_amount": {
+        "type": "number"
+      },
+      "unused_credits_payable_amount_bcy": {
+        "type": "number"
+      },
+      "unused_credits_receivable_amount": {
+        "type": "number"
+      },
+      "unused_credits_receivable_amount_bcy": {
+        "type": "number"
+      },
+      "vendor_name": {
+        "type": "string"
+      },
+      "website": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }

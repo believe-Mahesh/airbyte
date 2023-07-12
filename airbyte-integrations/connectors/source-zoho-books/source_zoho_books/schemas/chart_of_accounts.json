@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "properties": {
+        "account_id": {"type": "string"},
+        "account_name": {"type": "string"},
+        "account_code": {"type": "string"},
+        "account_type": {"type": "string"},
+        "is_user_created": {"type": "boolean"},
+        "is_system_account": {"type": "boolean"},
+        "is_standalone_account": {"type": "boolean"},
+        "is_active": {"type": "boolean"},
+        "can_show_in_ze": {"type": "boolean"},
+        "is_involved_in_transaction": {"type": "boolean"},
+        "current_balance": {"type": "string"},
+        "parent_account_id": {"type": "string"},
+        "parent_account_name": {"type": "string"},
+        "depth": {"type": "string"},
+        "has_attachment": {"type": "boolean"},
+        "is_child_present": {"type": "string"},
+        "child_count": {"type": "string"},
+        "documents": {"type": "array"},
+        "created_time": {"type": "string"},
+        "last_modified_time": {"type": "string"}
+     
+    },
+    "type": "object"
+  }

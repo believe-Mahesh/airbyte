@@ -1,0 +1,32 @@
+documentationUrl: https://docsurl.com
+connectionSpecification:
+  $schema: http://json-schema.org/draft-07/schema#
+  title: Zoho Books Spec
+  type: object
+  required:
+    - client_id
+    - client_secret
+    - refresh_token
+    - location
+    - date_start
+    - organization_id
+  properties:
+    # 'TODO: This schema defines the configuration required for the source. This usually involves metadata such as database and/or authentication information.':
+    client_id:
+      type: string
+      description: describe me
+    client_secret:
+      type: string
+      description: describe me
+    refresh_token:
+      type: string
+      description: describe me
+    location:
+      type: string
+      description: describe me
+    organization_id:
+      type: string
+      description: describe me
+    date_start:
+      type: string
+      description: describe me

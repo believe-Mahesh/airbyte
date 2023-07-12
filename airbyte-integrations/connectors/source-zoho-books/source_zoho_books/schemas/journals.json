@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "journal_id": {
+        "type": ["null", "string"]
+      },
+      "journal_date": {
+        "type": ["null", "string"],
+        "format": "date"
+      },
+      "entry_number": {
+        "type": ["null", "string"]
+      },
+      "reference_number": {
+        "type": ["null", "string"]
+      },
+      "currency_id": {
+        "type": ["null", "string"]
+      },
+      "notes": {
+        "type": ["null", "string"]
+      },
+      "journal_type": {
+        "type": ["null", "string"]
+      },
+      "entity_type": {
+        "type": ["null", "string"]
+      },
+      "total": {
+        "type": ["null", "number"]
+      },
+      "bcy_total": {
+        "type": ["null", "number"]
+      },
+      "line_items": {
+        "properties": {
+            "journal_id": {
+                "type": "string"
+            },
+            "entry_number": {
+              "type": "string"
+            },
+            "reference_number": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            },
+            "currency_id": {
+              "type": "string"
+            },
+            "currency_code": {
+              "type": "string"
+            },
+            "currency_symbol": {
+              "type": "string"
+            },
+            "exchange_rate": {
+              "type": "string"
+            },
+            "journal_date": {
+              "type": "string"
+            },
+            "journal_type": {
+              "type": "string"
+            },
+            "vat_treatment": {
+              "type": "string"
+            },
+            "product_type": {
+              "type": "string"
+            },
+            "include_in_vat_return": {
+              "type": "boolean"
+            },
+            "is_bas_adjustment": {
+              "type": "boolean"
+            },
+            "line_items": {
+              "type": "array"
+            },
+            "line_item_total": {
+              "type": "string"
+            },
+            "total": {
+              "type": "string"
+            },
+            "bcy_total": {
+              "type": "string"
+            },
+            "price_precision": {
+              "type": "string"
+            },
+            "taxes": {
+              "type": "string"
+            },              
+            "created_time": {
+              "type": "string"
+            },
+            "last_modified_time": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "custom_fields": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        } 
+    }
+}
+  
+
